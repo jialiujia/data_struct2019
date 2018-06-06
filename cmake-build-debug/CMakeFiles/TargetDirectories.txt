@@ -1,0 +1,3 @@
+/project/data_struct2019/cmake-build-debug/CMakeFiles/edit_cache.dir
+/project/data_struct2019/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/project/data_struct2019/cmake-build-debug/CMakeFiles/data_struct2019.dir
