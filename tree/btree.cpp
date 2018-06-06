@@ -194,7 +194,7 @@ void inorderNonrecursion(BTNode *bt) {
         BTNode *stack[MAXSIZE];
         int top = -1;
         BTNode *node = bt;
-        while (top != -1 && node != nullptr) {
+        while (top != -1 || node != nullptr) {
             while (node != nullptr) {
                 stack[++ top] = node;
                 node = node ->lchild;
@@ -210,7 +210,7 @@ void inorderNonrecursion(BTNode *bt) {
 }
 
 void postorderNonrecursion(BTNode *bt) {
-    if (bt != NULL) {
+    if (bt != nullptr) {
         BTNode *stack1[MAXSIZE];
         BTNode *stack2[MAXSIZE]; //缓存出栈结点
         int top1 = -1;
@@ -230,6 +230,37 @@ void postorderNonrecursion(BTNode *bt) {
         while (top2 != -1) {
             BTNode *node = stack2[top2 --];
             visit(node ->data);
+        }
+    }
+}
+
+void postorderNonrecursion2(BTNode *bt) {
+    if (bt != nullptr) {
+        BTNode *stack[MAXSIZE];
+        int top = -1;
+        BTNode *pre, *cur; //上次访问结点和当前访问结点
+        cur = bt;
+        pre = nullptr;
+        while (cur != nullptr) {
+            stack[++ top] = cur;
+            cur = cur ->lchild;
+        }
+
+        while (top != -1) {
+            cur = stack[top --];
+            if (cur ->rchild == nullptr || cur ->rchild == pre) {
+                //右结点为空或者右结点已被访问
+                visit(cur ->data);
+                pre = cur;
+            } else { //访问右子树
+                // 根节点再次入栈
+                stack[++ top] = cur;
+                cur = cur ->rchild;
+                while (cur != nullptr) {
+                    stack[++ top] = cur;
+                    cur = cur ->lchild;
+                }
+            }
         }
     }
 }

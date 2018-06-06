@@ -41,4 +41,6 @@ void inorderNonrecursion(BTNode *bt); //非递归中序遍历
 
 void postorderNonrecursion(BTNode *bt); //非递归后序遍历(逆后序双栈法)
 
+void postorderNonrecursion2(BTNode *bt); //非递归后序遍历(标准但栈法)
+
 #endif //DATA_STRUCT2019_BTREE_HPP
