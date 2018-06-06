@@ -35,4 +35,10 @@ void level(BTNode *p); //层次遍历
 
 int maxNode(BTNode *p); //求二叉树宽度
 
+void preorderNonrecursion(BTNode *bt); //非递归先序遍历
+
+void inorderNonrecursion(BTNode *bt); //非递归中序遍历
+
+void postorderNonrecursion(BTNode *bt); //非递归后序遍历(逆后序双栈法)
+
 #endif //DATA_STRUCT2019_BTREE_HPP

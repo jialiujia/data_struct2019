@@ -128,7 +128,7 @@ void level(BTNode *p) {
 }
 
 int maxNode(BTNode *p) {
-    int front, rear, Lno;
+    int front, rear, Lno = 0;
     St que[MAXSIZE];
     front = rear = 0;
     if (p != nullptr) {
@@ -171,4 +171,65 @@ int maxNode(BTNode *p) {
     }
 }
 
+void preorderNonrecursion(BTNode *bt) {
+    if (bt != nullptr) {
+        BTNode *stack[MAXSIZE];
+        int top = -1;
+        stack[++ top] = bt;
+        while (top != -1) {
+            BTNode *node = stack[top --];
+            visit(node ->data);
+            if (node ->rchild != nullptr) { //优先访问右子树
+                stack[++ top] = node ->rchild;
+            }
+            if (node ->lchild != nullptr) {
+                stack[++ top] = node ->lchild;
+            }
+        }
+    }
+}
 
+void inorderNonrecursion(BTNode *bt) {
+    if (bt != nullptr) {
+        BTNode *stack[MAXSIZE];
+        int top = -1;
+        BTNode *node = bt;
+        while (top != -1 && node != nullptr) {
+            while (node != nullptr) {
+                stack[++ top] = node;
+                node = node ->lchild;
+            }
+
+            if (top != -1) {
+                node = stack[top --];
+                visit(node ->data);
+                node = node ->rchild;
+            }
+        }
+    }
+}
+
+void postorderNonrecursion(BTNode *bt) {
+    if (bt != NULL) {
+        BTNode *stack1[MAXSIZE];
+        BTNode *stack2[MAXSIZE]; //缓存出栈结点
+        int top1 = -1;
+        int top2 = -1;
+        stack1[++ top1] = bt;
+        while (top1 != -1) {
+            BTNode *node = stack1[top1 --];
+            stack2[++ top2] = node;
+            if (node ->lchild != nullptr) {
+                stack1[++ top1] = node ->lchild;
+            }
+            if (node ->rchild != nullptr) {
+                stack1[++ top1] = node ->rchild;
+            }
+        }
+
+        while (top2 != -1) {
+            BTNode *node = stack2[top2 --];
+            visit(node ->data);
+        }
+    }
+}
