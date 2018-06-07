@@ -12,6 +12,12 @@ typedef struct bt_node {
     bt_node *lchild, *rchild;
 } BTNode;
 
+typedef struct tbt_node { //线索树节点
+    char data;
+    int ltag, rtag; //线索标记
+    tbt_node *lchild, *rchild;
+} TBTNode;
+
 typedef struct st {
     BTNode *p;
     int lno; //层次号
@@ -42,5 +48,9 @@ void inorderNonrecursion(BTNode *bt); //非递归中序遍历
 void postorderNonrecursion(BTNode *bt); //非递归后序遍历(逆后序双栈法)
 
 void postorderNonrecursion2(BTNode *bt); //非递归后序遍历(标准但栈法)
+
+void createInThread(TBTNode *root); //建立中序线索二叉树
+
+void Inorder(TBTNode *root); //中序遍历中序线索二叉树
 
 #endif //DATA_STRUCT2019_BTREE_HPP

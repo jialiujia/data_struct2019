@@ -12,7 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3759606a-380e-4714-ba80-0f99ca5f3ecd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/tree/btree.cpp" afterPath="$PROJECT_DIR$/tree/btree.cpp" />
       <change beforePath="$PROJECT_DIR$/tree/btree.hpp" afterPath="$PROJECT_DIR$/tree/btree.hpp" />
     </list>
@@ -30,8 +30,8 @@
       <file leaf-file-name="btree.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tree/btree.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="39" />
+            <state relative-caret-position="575">
+              <caret line="53" column="27" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -40,8 +40,8 @@
       <file leaf-file-name="btree.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tree/btree.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="211" column="40" lean-forward="true" selection-start-line="211" selection-start-column="40" selection-end-line="211" selection-end-column="40" />
+            <state relative-caret-position="313">
+              <caret line="284" column="19" lean-forward="false" selection-start-line="284" selection-start-column="5" selection-end-line="284" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -243,11 +243,13 @@
       <workItem from="1528249989267" duration="546000" />
       <workItem from="1528292432453" duration="3970000" />
       <workItem from="1528297696829" duration="2633000" />
+      <workItem from="1528337374946" duration="347000" />
+      <workItem from="1528377177707" duration="4850000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91472000" />
+    <option name="totallyTimeSpent" value="96669000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -287,14 +289,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tree/btree.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5375">
-          <caret line="215" column="22" lean-forward="true" selection-start-line="215" selection-start-column="22" selection-end-line="215" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../libutp-master/Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -624,6 +618,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tree/btree.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="53" column="27" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
@@ -632,18 +645,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tree/btree.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tree/btree.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="211" column="40" lean-forward="true" selection-start-line="211" selection-start-column="40" selection-end-line="211" selection-end-column="40" />
+        <state relative-caret-position="313">
+          <caret line="284" column="19" lean-forward="false" selection-start-line="284" selection-start-column="5" selection-end-line="284" selection-end-column="19" />
           <folding />
         </state>
       </provider>

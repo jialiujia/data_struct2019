@@ -264,3 +264,51 @@ void postorderNonrecursion2(BTNode *bt) {
         }
     }
 }
+
+void InThread(TBTNode *p, TBTNode* &pre) {
+    if (p != nullptr) {
+        InThread(p, pre); //递归左子树线索化
+        if (p ->lchild == nullptr) {
+            p ->lchild = pre; //建立当前节点的前驱线索
+            p ->ltag = 1;
+        }
+
+        if (p ->rchild == nullptr && pre != nullptr) {
+            pre ->rchild = p; //建立前节点的后继线索
+            pre ->rtag = 1;
+        }
+        pre = p;
+        InThread(p ->rchild, pre); //递归右子树线索化
+    }
+}
+
+void createInThread(TBTNode *root) {
+    TBTNode *pre = nullptr;
+    if (root != nullptr) {
+        InThread(root, pre);
+        pre ->rtag = 1;
+        pre ->rchild = nullptr;
+    }
+}
+
+TBTNode* First(TBTNode *p) { //获取最左下结点
+    while (p ->ltag == 0) {
+        p = p ->lchild;
+    }
+
+    return p;
+}
+
+TBTNode* Next(TBTNode *p) {
+    if (p ->rtag == 1) { //若无子树则返回后继点
+        return p ->rchild;
+    } else {
+        return First(p ->rchild);
+    }
+}
+
+void Inorder(TBTNode *root) {
+    for (TBTNode *p = First(root); p != nullptr; p = Next(p)) {
+        visit(p ->data);
+    }
+}
