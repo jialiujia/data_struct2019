@@ -47,10 +47,20 @@ void inorderNonrecursion(BTNode *bt); //非递归中序遍历
 
 void postorderNonrecursion(BTNode *bt); //非递归后序遍历(逆后序双栈法)
 
-void postorderNonrecursion2(BTNode *bt); //非递归后序遍历(标准但栈法)
+void postorderNonrecursion2(BTNode *bt); //非递归后序遍历(标准单栈法)
 
 void createInThread(TBTNode *root); //建立中序线索二叉树
 
 void Inorder(TBTNode *root); //中序遍历中序线索二叉树
+
+void createPreThread(TBTNode *root); //建立先序线索二叉树
+
+void Preorder(TBTNode *root); //先序遍历先序线索二叉树
+
+void createPostThread(TBTNode *root); //建立后序线索树
+
+void Postorder(TBTNode *root); //后序遍历后序线索二叉树
+
+
 
 #endif //DATA_STRUCT2019_BTREE_HPP

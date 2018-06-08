@@ -295,7 +295,6 @@ TBTNode* First(TBTNode *p) { //获取最左下结点
     while (p ->ltag == 0) {
         p = p ->lchild;
     }
-
     return p;
 }
 
@@ -310,5 +309,52 @@ TBTNode* Next(TBTNode *p) {
 void Inorder(TBTNode *root) {
     for (TBTNode *p = First(root); p != nullptr; p = Next(p)) {
         visit(p ->data);
+    }
+}
+
+void PreThread(TBTNode *p, TBTNode* &pre) {
+    if (p != nullptr) {
+        if(p ->lchild == nullptr) {
+            p ->ltag = 1;
+            p ->lchild = pre;
+        }
+
+        if (p ->rchild == nullptr && pre != nullptr) {
+            pre ->rtag = 1;
+            pre ->rchild = p;
+        }
+
+        pre = p;
+        if (p ->ltag == 0) {
+            PreThread(p ->lchild, pre);
+        }
+
+        if (p ->rtag == 0) {
+            PreThread(p ->rchild, pre);
+        }
+    }
+}
+
+void createPreThread(TBTNode *root) {
+    TBTNode *pre = nullptr;
+    if (root != nullptr) {
+        PreThread(root, pre);
+        pre ->rtag = 1;
+        pre ->rchild = nullptr;
+    }
+}
+
+void Preorder(TBTNode *root) {
+    if (root != nullptr) {
+        TBTNode *p = root;
+        while (p != nullptr) {
+            while (p ->ltag == 0) {
+                visit(p ->data);
+                p = p ->lchild;
+            }
+
+            visit(p ->data);
+            p = p ->rchild;
+        }
     }
 }
