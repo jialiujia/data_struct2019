@@ -59,8 +59,6 @@ void Preorder(TBTNode *root); //先序遍历先序线索二叉树
 
 void createPostThread(TBTNode *root); //建立后序线索树
 
-void Postorder(TBTNode *root); //后序遍历后序线索二叉树
-
 
 
 #endif //DATA_STRUCT2019_BTREE_HPP

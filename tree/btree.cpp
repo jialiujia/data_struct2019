@@ -3,7 +3,6 @@
 //
 
 #include "btree.hpp"
-#include "malloc.h"
 #include "stdio.h
 
 void visit(char c) {
@@ -358,3 +357,32 @@ void Preorder(TBTNode *root) {
         }
     }
 }
+
+void PostThread(TBTNode *p, TBTNode* &pre) {
+    if (p != nullptr) {
+        PostThread(p ->lchild, pre); //递归线索化左子树
+        PostThread(p ->rchild, pre); //递归线索化右子树
+
+        if (p ->lchild == nullptr) {
+            p ->ltag = 1;
+            p ->lchild = pre;
+        }
+
+        if (p ->rchild == nullptr && pre != nullptr) {
+            pre ->rtag = 1;
+            pre ->rchild = p;
+        }
+
+        pre = p;
+    }
+}
+
+void createPostThread(TBTNode *root) {
+    TBTNode *pre = nullptr;
+    if (root != nullptr) {
+        PostThread(root, pre);
+        pre ->rtag = 1;
+        pre ->rchild = nullptr;
+    }
+}
+
