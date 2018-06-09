@@ -9,5 +9,6 @@ set(SOURCE_FILES main.cpp
         queue/queue.cpp queue/queue.hpp
         string/string.cpp string/string.hpp
         matrix/matrix.cpp matrix/matrix.hpp
-        tree/btree.cpp tree/btree.hpp)
+        tree/btree.cpp tree/btree.hpp
+        heap/heap.cpp heap/heap.hpp)
 add_executable(data_struct2019 ${SOURCE_FILES})
