@@ -4,6 +4,12 @@
 
 #include "btree.hpp"
 #include "stdio.h
+#include "../heap/heap.hpp"
+#ifdef __APPLE__
+#include "mm_malloc.h"
+#else
+#include "malloc.h"
+#endif
 
 void visit(char c) {
     printf("%c ", c);
@@ -386,3 +392,78 @@ void createPostThread(TBTNode *root) {
     }
 }
 
+void createBT(BTNode* &root, char pre[], char in[], int l1, int r1, int l2, int r2) {
+    BTNode *node1;
+    BTNode *node2;
+    int i;
+    if (l1 > r1) {
+        return;
+    }
+
+    node1 = (BTNode *) malloc(sizeof(BTNode));
+    node2 = (BTNode *) malloc(sizeof(BTNode));
+
+    for (i = l2; i <= r2; ++ i) {
+        if (pre[l1] == in[i]) {
+            break;
+        }
+    }
+
+    root->data = in[i];
+    createBT(node1, pre, in, l1 + 1, i - l2 + l1, l2, i - 1); //遍历左子树
+    root ->lchild = node1;
+    createBT(node2, pre, in, l1 + i - l2 + 1, r1, i + 1, r2); //遍历右子树
+    root ->rchild = node2;
+}
+
+void createHuffman(HuffmanNode* &root, int arr[], int size) {
+    if (size <= 0) {
+        return;
+    }
+    HuffmanNode *parent = nullptr;
+    Heap heap;
+    int result = createminHeap(heap, arr, size);
+    if (result != 1) {
+        return;
+    }
+
+    for (int i = 0; i < size - 1; ++i) {
+        int left = heap.data[0];
+        minheapRremove(heap, left);
+        int right = heap.data[0];
+        minheapRremove(heap, right);
+
+        HuffmanNode *lchild;
+        HuffmanNode *rchild;
+
+        if (parent != nullptr) {
+            if (right == parent ->data) {
+                rchild = parent;
+                lchild = (HuffmanNode *) malloc(sizeof(HuffmanNode));
+            } else {
+                lchild = parent;
+                rchild = (HuffmanNode *) malloc(sizeof(HuffmanNode));
+            }
+        } else {
+            rchild = (HuffmanNode *) malloc(sizeof(HuffmanNode));
+            lchild = (HuffmanNode *) malloc(sizeof(HuffmanNode));
+            parent = (HuffmanNode *) malloc(sizeof(HuffmanNode));
+        }
+        lchild ->data = left;
+        rchild ->data = right;
+        parent ->data = lchild ->data + rchild ->data;
+        parent ->left = lchild;
+        parent ->right = rchild;
+        parent ->parent = nullptr;
+        lchild ->parent = parent;
+        rchild ->parent = parent;
+
+        minheapInsert(heap, parent ->data);
+    }
+
+    root = parent;
+}
+
+void destroyHuffman(HuffmanNode* &root) {
+
+}

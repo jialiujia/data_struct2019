@@ -5,7 +5,11 @@
 #include "stack.hpp"
 #include "stdio.h"
 #include "stdlib.h"
+#ifdef __APPLE__
+#include "mm_malloc.h"
+#else
 #include "malloc.h"
+#endif
 
 void initStack(SqStack &stack) {
     stack.top = -1;

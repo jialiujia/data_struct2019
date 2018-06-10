@@ -23,6 +23,13 @@ typedef struct st {
     int lno; //层次号
 } St;
 
+typedef struct huffman_node {
+    int data;  //权值
+    huffman_node *parent;
+    huffman_node *left;
+    huffman_node *right;
+} HuffmanNode;
+
 void preorder(BTNode *p); //先序遍历
 
 void inorder(BTNode *p); //中序遍历
@@ -59,6 +66,18 @@ void Preorder(TBTNode *root); //先序遍历先序线索二叉树
 
 void createPostThread(TBTNode *root); //建立后序线索树
 
+void createBT(BTNode* &root, char pre[], char in[], int l1, int r1, int l2, int r2); //通过先序遍历和中序遍历建立二叉树，
+                                                                                     //l1为先序遍历起点，r1为先序遍历终点
+                                                                                     //l2为中序遍历起点，r2为中序遍历终点
 
+void createHuffman(HuffmanNode* &root, int arr[], int size); //创建Huffman树
+
+void destroyHuffman(HuffmanNode* &root); //销毁Huffman树
+
+void preorderHuffman(HuffmanNode *root); //前序遍历Huffman树
+
+void inorderHuffman(HuffmanNode *root); //中序遍历Huffman树
+
+void postorderHuffman(HuffmanNode *root); //后序遍历Huffman树
 
 #endif //DATA_STRUCT2019_BTREE_HPP

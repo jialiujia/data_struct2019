@@ -3,7 +3,11 @@
 //
 
 #include "string.hpp"
+#ifdef __APPLE__
+#include "mm_malloc.h"
+#else
 #include "malloc.h"
+#endif
 
 int strassign(Str &str, char *ch) {
     int i = 0;

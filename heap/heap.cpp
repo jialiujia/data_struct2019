@@ -4,6 +4,22 @@
 
 #include "heap.hpp"
 
+int createminHeap(Heap &heap, int data[], int size) {
+    if (size <= 0) {
+        return 0;
+    }
+
+    heap.size = size;
+    for (int i = 0; i < size; ++ i) {
+        heap.data[i] = data[i];
+    }
+
+    for (int i = (size / 2) - 1; i >= 0; -- i) {
+        minheapFilterdown(heap, i, size - 1);
+    }
+    return 1;
+}
+
 int getIndex(Heap heap, int data) {
     if (heap.size == 0) {
         return -1;

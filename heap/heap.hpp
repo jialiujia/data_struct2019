@@ -13,6 +13,8 @@ typedef struct heap {
     int size = 0; //实际容量
 } Heap;
 
+int createminHeap(Heap &heap, int data[], int size); //创建最小堆
+
 int getIndex(Heap heap, int data); //获取元素所在的索引
 
 

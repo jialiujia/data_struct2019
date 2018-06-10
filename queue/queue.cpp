@@ -3,7 +3,12 @@
 //
 
 #include "queue.hpp"
-#include "malloc.h"
+#ifdef __APPLE__
+    #include "mm_malloc.h"
+#else
+    #include "malloc.h"
+#endif
+
 
 void initQueue(SqQueue &queue) {
     queue.front = queue.rear = 0;
@@ -35,17 +40,17 @@ int deQueue(SqQueue &queue, int &x) {
 
 void initQueue(LiQueue* &queue) {
     queue = (LiQueue *) malloc(sizeof(LiQueue));
-    queue ->front = queue ->rear = NULL;
+    queue ->front = queue ->rear = nullptr;
 }
 
 int isQueueEmpty(LiQueue *queue) {
-    return queue ->front == NULL || queue ->rear == NULL ? 1 : 0;
+    return queue ->front == nullptr || queue ->rear == nullptr ? 1 : 0;
 }
 
 int enQueue(LiQueue* &queue, int x) {
     QNode *node = (QNode *) malloc(sizeof(QNode));
     node ->data = x;
-    if (queue ->rear == NULL) {
+    if (queue ->rear == nullptr) {
         queue ->front = queue ->rear = node;
     } else {
         queue ->rear ->next = node;
@@ -55,14 +60,14 @@ int enQueue(LiQueue* &queue, int x) {
 }
 
 int deQueue(LiQueue* &queue, int &x) {
-    if (queue ->front == NULL || queue ->rear == NULL) {
+    if (queue ->front == nullptr || queue ->rear == nullptr) {
         return 0;
     }
 
     QNode *node = queue ->front;
     x = node ->data;
     if (queue ->front == queue ->rear) {
-        queue ->front = queue ->rear = NULL;
+        queue ->front = queue ->rear = nullptr;
     } else {
         queue ->front = queue ->front ->next;
     }
