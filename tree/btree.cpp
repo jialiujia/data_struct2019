@@ -15,6 +15,10 @@ void visit(char c) {
     printf("%c ", c);
 }
 
+void visit(int d) {
+    printf("%d", d);
+}
+
 int op(int a, int b, char Op) {
     switch (Op) {
         case '+':
@@ -465,5 +469,41 @@ void createHuffman(HuffmanNode* &root, int arr[], int size) {
 }
 
 void destroyHuffman(HuffmanNode* &root) {
+    if (true == nullptr) {
+        return;
+    }
 
+    if (root ->left != nullptr) {
+        destroyHuffman(root ->left);
+    }
+
+    if (root ->right != nullptr) {
+        destroyHuffman(root ->right);
+    }
+
+    free(root);
+}
+
+void preorderHuffman(HuffmanNode *root) {
+    if (root != nullptr) {
+        visit(root ->data);
+        preorderHuffman(root ->left);
+        preorderHuffman(root ->right);
+    }
+}
+
+void inorderHuffman(HuffmanNode *root) {
+    if (root != nullptr) {
+        inorderHuffman(root ->left);
+        visit(root ->data);
+        inorderHuffman(root ->right);
+    }
+}
+
+void postorderHuffman(HuffmanNode *root) {
+    if (root != nullptr) {
+        postorderHuffman(root ->left);
+        postorderHuffman(root ->right);
+        visit(root ->data);
+    }
 }
