@@ -6,8 +6,10 @@
 #define DATA_STRUCT2019_BTREE_HPP
 
 #define MAXSIZE 100
+#define RED 0;
+#define BLACK 1;
 
-typedef struct bt_node {
+typedef struct bt_node { //查找二叉树结点
     char data;
     bt_node *lchild, *rchild;
 } BTNode;
@@ -18,17 +20,25 @@ typedef struct tbt_node { //线索树节点
     tbt_node *lchild, *rchild;
 } TBTNode;
 
-typedef struct st {
+typedef struct st { //二叉树层次结构
     BTNode *p;
     int lno; //层次号
 } St;
 
-typedef struct huffman_node {
+typedef struct huffman_node { //哈夫曼树结点
     int data;  //权值
     huffman_node *parent;
     huffman_node *left;
     huffman_node *right;
 } HuffmanNode;
+
+typedef struct rbtree_node { //红黑树结点
+    int data;
+    int color;
+    rbtree_node *parent;
+    rbtree_node *lchild;
+    rbtree_node *rchild;
+} RBTreeNode;
 
 void preorder(BTNode *p); //先序遍历
 
