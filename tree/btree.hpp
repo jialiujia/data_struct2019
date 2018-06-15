@@ -33,8 +33,9 @@ typedef struct huffman_node { //哈夫曼树结点
 } HuffmanNode;
 
 typedef struct rbtree_node { //红黑树结点
+    int key;
     int data;
-    int color;
+    char color;
     rbtree_node *parent;
     rbtree_node *lchild;
     rbtree_node *rchild;
@@ -89,5 +90,11 @@ void preorderHuffman(HuffmanNode *root); //前序遍历Huffman树
 void inorderHuffman(HuffmanNode *root); //中序遍历Huffman树
 
 void postorderHuffman(HuffmanNode *root); //后序遍历Huffman树
+
+RBTreeNode* successorRBTree(RBTreeNode *node); //寻找二叉查找树后继(树中比大于node的最小的那个元素)
+
+int getRBTreeData(RBTreeNode *root, int key); //获取红黑树键值
+
+void insertRBTreeNode(RBTreeNode* &root, int key, int value); //红黑树插入新节点
 
 #endif //DATA_STRUCT2019_BTREE_HPP

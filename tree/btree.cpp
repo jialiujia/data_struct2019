@@ -507,3 +507,106 @@ void postorderHuffman(HuffmanNode *root) {
         visit(root ->data);
     }
 }
+
+void rotateRBtreeLeft(RBTreeNode* &node) { //红黑树左旋
+    if (node == nullptr) {
+        return;
+    }
+
+    RBTreeNode *right = node ->rchild;
+    node ->rchild = right ->lchild;
+    if (right ->lchild != nullptr) {
+        right ->lchild ->parent = node;
+    }
+
+    right ->parent = node ->parent;
+    if (node ->parent != nullptr) {
+        if (node ->parent ->lchild == node) {
+            node ->parent ->lchild = right;
+        } else {
+            node ->parent ->rchild = right;
+        }
+    }
+
+    right ->lchild = node;
+    node ->parent = right;
+}
+
+void rotateRBtreeRight(RBTreeNode* &node) { //红黑树右旋
+    if (node == nullptr) {
+        return;
+    }
+
+    RBTreeNode *left = node ->lchild;
+    if (left ->rchild != nullptr) {
+        left ->rchild ->parent = node;
+    }
+
+    left ->parent = node ->parent;
+    if (node ->parent != nullptr) {
+        if (node ->parent ->lchild == node) {
+            node ->parent ->lchild = left;
+        } else {
+            node ->parent ->rchild = left;
+        }
+    }
+
+    left ->rchild = node;
+    node ->parent = left;
+}
+
+RBTreeNode* successorRBTree(RBTreeNode *node) {
+    if (node == nullptr) {
+        return nullptr;
+    }
+
+    if (node ->rchild != nullptr) { // node的右子树不空，则node的后继是其右子树中最小的那个元素
+        RBTreeNode *left = node ->rchild;
+        if (left == nullptr) {
+            return node ->rchild;
+        }
+        while (left ->lchild != nullptr) {
+            left = left ->lchild;
+        }
+        return left;
+    } else { //node的右孩子为空，则node的后继是其第一个向左走的祖先
+        if (node ->parent == nullptr) {
+            return nullptr;
+        }
+
+        RBTreeNode *parent = node ->parent;
+        RBTreeNode *child = node;
+        while (parent != nullptr && parent ->lchild != child) {
+            parent = parent ->parent;
+            child = parent;
+        }
+
+        return parent;
+    }
+}
+
+int compare(int a, int b) {
+    if (a > b) return 1;
+    else if (a == b) return 0;
+    else return -1;
+}
+
+int getRBTreeData(RBTreeNode *root, int key) {
+    if (root == nullptr) {
+        return -1;
+    }
+
+    RBTreeNode *node = root;
+    while (node != nullptr) {
+        int result = compare(key, node ->key);
+        if (result > 0) {
+            node = node ->rchild;
+        } else if(result < 0) {
+            node = node ->lchild;
+        } else {
+            return node ->data;
+        }
+    }
+
+    return -1;
+}
