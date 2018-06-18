@@ -3,7 +3,7 @@
 //
 
 #include "btree.hpp"
-#include "stdio.h
+#include "stdio.h"
 #include "../heap/heap.hpp"
 #ifdef __APPLE__
 #include "mm_malloc.h"
@@ -469,7 +469,7 @@ void createHuffman(HuffmanNode* &root, int arr[], int size) {
 }
 
 void destroyHuffman(HuffmanNode* &root) {
-    if (true == nullptr) {
+    if (root == nullptr) {
         return;
     }
 
@@ -585,17 +585,77 @@ RBTreeNode* successorRBTree(RBTreeNode *node) {
     }
 }
 
+RBTreeNode* predecessorRBTree(RBTreeNode *node) {
+    if (node == nullptr) {
+        return nullptr;
+    }
+
+    if (node ->lchild != nullptr) { //node的左子树不空，则node的前驱是其左子树中最大的那个元素
+        RBTreeNode *right = node ->lchild;
+       if (right == nullptr) {
+           return node ->lchild;
+       }
+
+        while (right ->rchild != nullptr) {
+            right = right ->rchild;
+        }
+        return right;
+    } else { //node的左孩子为空，则node的前驱是其第一个向右走的祖先
+        if (node ->parent == nullptr) {
+            return nullptr;
+        }
+
+        RBTreeNode *parent = node ->parent;
+        RBTreeNode *child = node;
+        while (parent != nullptr && parent ->rchild != child) {
+            parent = parent ->parent;
+            child = parent;
+        }
+        return parent;
+    }
+}
+
+void createRBtreeNode(RBTreeNode* &node, int key, int data) {
+    node = (RBTreeNode *) (malloc(sizeof(RBTreeNode)));
+    if (node == nullptr)
+        return;
+    node ->key = key;
+    node ->data = data;
+    node ->color = BLACK;
+    node ->rchild = node ->rchild = node ->parent = nullptr;
+}
+
+void preorderRBTree(RBTreeNode *root) {
+    if (root != nullptr) {
+        visit(root ->data);
+        preorderRBTree(root ->lchild);
+        preorderRBTree(root ->rchild);
+    }
+}
+
+void inorderRBTree(RBTreeNode *root) {
+    if (root != nullptr) {
+        inorderRBTree(root ->lchild);
+        visit(root ->data);
+        inorderRBTree(root ->rchild);
+    }
+}
+
+void postorderRBTree(RBTreeNode *root) {
+    if (root != nullptr) {
+        postorderRBTree(root ->lchild);
+        postorderRBTree(root ->rchild);
+        visit(root ->data);
+    }
+}
+
 int compare(int a, int b) {
     if (a > b) return 1;
     else if (a == b) return 0;
     else return -1;
 }
 
-int getRBTreeData(RBTreeNode *root, int key) {
-    if (root == nullptr) {
-        return -1;
-    }
-
+int getRBTreeEntryData(RBTreeNode *root, int key) {
     RBTreeNode *node = root;
     while (node != nullptr) {
         int result = compare(key, node ->key);
@@ -609,4 +669,356 @@ int getRBTreeData(RBTreeNode *root, int key) {
     }
 
     return -1;
+}
+
+RBTreeNode* getRBTreeEntry(RBTreeNode *root, int key) {
+    RBTreeNode *node = root;
+    while (node != nullptr) {
+        int result = compare(key, node ->key);
+        if (result > 0) {
+            node = node ->rchild;
+        } else if(result < 0) {
+            node = node ->lchild;
+        } else {
+            return node;
+        }
+    }
+
+    return nullptr;
+}
+
+RBTreeNode* getMinimumRBTreeEntry(RBTreeNode *root) {
+    if (root == nullptr) {
+        return nullptr;
+    }
+
+    RBTreeNode *node = root;
+    while (node ->lchild != nullptr) {
+        node = node ->lchild;
+    }
+
+    return node;
+}
+
+int getMinimumRBTreeEntryData(RBTreeNode *root) {
+    RBTreeNode *node = getMinimumRBTreeEntry(root);
+    if (node == nullptr) {
+        return -1;
+    }
+
+    return node ->data;
+}
+
+RBTreeNode* getMaximumRBTreeEntry(RBTreeNode *root) {
+    if (root == nullptr) {
+        return nullptr;
+    }
+
+    RBTreeNode *node = root;
+    while (node ->rchild != nullptr) {
+        node = node ->rchild;
+    }
+
+    return node;
+}
+
+int getMaximumRBTreeEntryData(RBTreeNode *root) {
+    RBTreeNode *node = getMaximumRBTreeEntry(root);
+    if (node == nullptr) {
+        return -1;
+    }
+
+    return node ->data;
+}
+
+void fixUpInsertRBTree(RBTreeNode *root, RBTreeNode *node) { //红黑树插入修正函数
+    if (node ->parent ->color == BLACK) { //如果父节点为黑则不处理
+        return;
+    }
+
+    RBTreeNode *parent, *grandParent;
+    while ((parent = node ->parent) != nullptr && parent ->color == RED) {
+        grandParent = parent ->parent;
+        if (parent == grandParent ->lchild) { //父节点是祖父结点的左孩子
+            //第一种情况:叔叔结点为红色
+            {
+                RBTreeNode *uncle = grandParent ->rchild;
+                if (uncle != nullptr && uncle ->color == RED) {
+                    uncle ->color = BLACK;
+                    parent ->color = BLACK;
+                    grandParent ->color = RED;
+                    node = grandParent;
+                    continue;
+                }
+            }
+            //第二种情况:叔叔结点是黑色，且当前节点是右孩子
+            if (parent ->rchild == node) {
+                RBTreeNode *tmp;
+                rotateRBtreeLeft(parent);
+                tmp = parent;
+                parent = node;
+                node = tmp;
+            }
+
+            //第二种情况:叔叔结点是黑色，且当前节点是左孩子
+            parent ->color = BLACK;
+            grandParent ->color = RED;
+            rotateRBtreeRight(grandParent);
+        } else { //父节点是祖父结点的右孩子
+            //第一种情况:叔叔结点为红色
+            {
+                RBTreeNode *uncle = grandParent ->lchild;
+                if (uncle != nullptr && uncle ->color == RED) {
+                    uncle ->color = BLACK;
+                    parent ->color = BLACK;
+                    grandParent ->color = RED;
+                    node = grandParent;
+                    continue;
+                }
+            }
+
+            //第二种情况:叔叔结点是黑色，且当前节点是左孩子
+            if (parent ->lchild == node) {
+                RBTreeNode *tmp;
+                rotateRBtreeRight(parent);
+                tmp = parent;
+                parent = node;
+                node = tmp;
+            }
+
+            //第二种情况:叔叔结点是黑色，且当前节点是右孩子
+            parent ->color = BLACK;
+            grandParent ->color = RED;
+            rotateRBtreeLeft(grandParent);
+        }
+    }
+    //将根节点设为黑色
+    root ->color = BLACK;
+}
+
+int insertRBTreeNode(RBTreeNode* &root, int key, int value) {
+    if (root == nullptr) {
+        createRBtreeNode(root, key, value); //创建根节点
+        if (root == nullptr) return 0;
+        else return 1;
+    } else if (getRBTreeEntry(root, key) != nullptr) { //防止重复键值插入
+        return 0;
+    } else {
+        RBTreeNode *node = root;
+        while (node != nullptr) {
+            if (node ->key > key && node ->lchild != nullptr) {
+                node = node ->lchild;
+            } else if (node ->key < key && node ->rchild != nullptr) {
+                node = node ->rchild;
+            } else {
+                break;
+            }
+        }
+        RBTreeNode *insertNode;
+        createRBtreeNode(insertNode, key, value);
+        if (insertNode == nullptr) return 0;
+        insertNode ->parent = node;
+        insertNode ->color = RED; //设置节点的颜色为红色
+        if (node ->key > key) {
+            node ->lchild = insertNode;
+        } else {
+            node ->rchild = insertNode;
+        }
+
+        fixUpInsertRBTree(root, insertNode); //重新修正为一颗二叉查找树
+        return 1;
+    }
+}
+
+void fixUpRemoveRBTree(RBTreeNode *root, RBTreeNode *node, RBTreeNode *parent) { //红黑树删除修正函数
+    while (node ->color == BLACK && node != root) {
+        RBTreeNode *brother;
+        if (parent ->lchild == node) {
+            brother = parent ->rchild;
+            //第一种情况：兄弟节点是红色。
+            //把兄弟节点设为黑色，父节点设为红色，并对父节点左旋。
+            if (brother ->color == RED) {
+                parent ->color = RED;
+                brother ->color = BLACK;
+                rotateRBtreeLeft(parent);
+                brother = parent ->rchild;
+            }
+
+            //第二种情况：兄弟节点是黑色，并且兄弟节点的两个孩子节点也为黑色
+            //兄弟节点设为红色并且当前结点上移至父节点
+            if (brother != nullptr && brother ->color == BLACK
+                    && brother ->lchild != nullptr && brother ->lchild ->color == BLACK
+                    && brother ->rchild != nullptr && brother ->rchild ->color == BLACK) {
+                brother ->color = RED;
+                node = parent;
+                parent = node ->parent;
+            } else {
+                //第三种情况：兄弟节点是黑色，并且兄弟节点的左孩子为红色右孩子为黑色
+                //交换兄弟节点与左孩子结点的颜色，并对兄弟节点右旋，新的兄弟节点是一个有红色右孩子的黑色结点
+                if (brother != nullptr && brother ->color == BLACK
+                        && brother ->lchild != nullptr && brother ->lchild ->color == RED
+                        && brother ->rchild != nullptr && brother ->rchild ->color == BLACK) {
+                    brother ->color = RED;
+                    brother ->lchild ->color = BLACK;
+                    rotateRBtreeRight(brother);
+                    brother = parent ->rchild;
+                }
+
+                //第四种情况：兄弟节点是黑色，并且兄弟节点的右孩子为红色左孩子任意色
+                //将兄弟节点的颜色转为父节点颜色，父节点设为黑色，兄弟节点右孩子设为黑色，对父节点左旋，当前结点设为根节点
+                brother ->color = parent ->color;
+                parent ->color = BLACK;
+                brother ->rchild ->color = BLACK;
+                rotateRBtreeLeft(parent);
+                node = root;
+                break;
+            }
+        } else {
+            brother = parent ->lchild;
+            //第一种情况：兄弟节点是红色。
+            //把兄弟节点设为黑色，父节点设为红色，并对父节点右旋。
+            if (brother ->color == RED) {
+                parent ->color = RED;
+                brother ->color = BLACK;
+                rotateRBtreeRight(parent);
+                brother = parent ->lchild;
+            }
+
+            //第二种情况：兄弟节点是黑色，并且兄弟节点的两个孩子节点也为黑色
+            //兄弟节点设为红色并且当前结点上移至父节点
+            if (brother != nullptr && brother ->color == BLACK
+                && brother ->lchild != nullptr && brother ->lchild ->color == BLACK
+                && brother ->rchild != nullptr && brother ->rchild ->color == BLACK) {
+                brother ->color = RED;
+                node = parent;
+                parent = node ->parent;
+            } else {
+                //第三种情况：兄弟节点是黑色，并且兄弟节点的右孩子为红色左孩子为黑色
+                //交换兄弟节点与右孩子结点的颜色，并对兄弟节点左旋，新的兄弟节点是一个有红色左孩子的黑色结点
+                if (brother != nullptr && brother ->color == BLACK
+                    && brother ->lchild != nullptr && brother ->lchild ->color == BLACK
+                    && brother ->rchild != nullptr && brother ->rchild ->color == RED) {
+                    brother ->color = RED;
+                    brother ->rchild ->color = BLACK;
+                    rotateRBtreeLeft(brother);
+                    brother = parent ->lchild;
+                }
+
+                //第四种情况：兄弟节点是黑色，并且兄弟节点的左孩子为红色右孩子任意色
+                //将兄弟节点的颜色转为父节点颜色，父节点设为黑色，兄弟节点左孩子设为黑色，对父节点右旋，当前结点设为根节点
+                brother ->color = parent ->color;
+                parent ->color = BLACK;
+                brother ->lchild ->color = BLACK;
+                rotateRBtreeRight(parent);
+                node = root;
+                break;
+            }
+        }
+    }
+
+    if (node != nullptr) {
+        node ->color = BLACK;
+    }
+}
+
+int removeRBTreeNode(RBTreeNode* &root, int key) {
+    RBTreeNode *child, *parent;
+    char color;
+    RBTreeNode *node = getRBTreeEntry(root, key);
+    if (node == nullptr) {
+        return 0;
+    }
+    // 被删除节点的"左右孩子都不为空"的情况。
+    if ( (node ->lchild!=nullptr) && (node->rchild!=nullptr) ) {
+        // 被删节点的后继节点。(称为"取代节点")
+        // 用它来取代"被删节点"的位置，然后再将"被删节点"去掉。
+        RBTreeNode *replace = node;
+
+        // 获取后继节点
+        replace = successorRBTree(replace);
+
+        // "node节点"不是根节点(只有根节点不存在父节点)
+        if (node ->parent != nullptr) {
+            if (node ->parent->lchild == node)
+                node ->parent->lchild = replace;
+            else
+                node ->parent->rchild = replace;
+        }
+        else
+            // "node节点"是根节点，更新根节点。
+            root  = replace;
+
+        // child是"取代节点"的右孩子，也是需要"调整的节点"。
+        // "取代节点"肯定不存在左孩子！因为它是一个后继节点。
+        child = replace->rchild;
+        parent = replace ->parent;
+        // 保存"取代节点"的颜色
+        color = replace ->color;
+
+        // "被删除节点"是"它的后继节点的父节点"
+        if (parent == node) {
+            parent = replace;
+        }
+        else {
+            // child不为空
+            if (child)
+                child ->parent = parent;
+            parent->lchild = child;
+
+            replace->rchild = node->rchild;
+            node ->rchild ->parent = replace;
+        }
+
+        replace->parent = node->parent;
+        replace->color = node->color;
+        replace->lchild = node->lchild;
+        node->lchild->parent = replace;
+
+        if (color == BLACK)
+            fixUpRemoveRBTree(root, child, parent);
+        destroyRBtreeNode(node);
+
+        return 1;
+    }
+
+    if (node->lchild !=nullptr)
+        child = node->lchild;
+    else
+        child = node->rchild;
+
+    parent = node->parent;
+    // 保存"取代节点"的颜色
+    color = node->color;
+
+    if (child)
+        child->parent = parent;
+
+    // "node节点"不是根节点
+    if (parent) {
+        if (parent->lchild == node)
+            parent->lchild = child;
+        else
+            parent->rchild = child;
+    }
+    else
+        root = child;
+
+    if (color == BLACK)
+        fixUpRemoveRBTree(root, child, parent);
+    destroyRBtreeNode(node);
+}
+
+void destroyRBtreeNode(RBTreeNode* &node) {
+    if (node != nullptr) {
+        if (node ->parent != nullptr) {
+           node ->parent = nullptr;
+        }
+        if (node ->rchild != nullptr) {
+            node ->rchild = nullptr;
+        }
+        if (node ->lchild != nullptr) {
+            node ->lchild = nullptr;
+        }
+    }
+    free(node);
 }
