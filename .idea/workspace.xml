@@ -11,7 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3759606a-380e-4714-ba80-0f99ca5f3ecd" name="Default" comment="完成红黑树插入删除操作">
+    <list default="true" id="3759606a-380e-4714-ba80-0f99ca5f3ecd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/data_struct2019.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/data_struct2019.dir/CXX.includecache" />
@@ -54,8 +54,8 @@
       <file leaf-file-name="btree.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tree/btree.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="876" column="38" lean-forward="true" selection-start-line="876" selection-start-column="38" selection-end-line="876" selection-end-column="38" />
+            <state relative-caret-position="-15281">
+              <caret line="252" column="32" lean-forward="true" selection-start-line="252" selection-start-column="32" selection-end-line="252" selection-end-column="32" />
               <folding>
                 <element signature="e#48#68#0" expanded="true" />
               </folding>
@@ -273,7 +273,7 @@
       <workItem from="1529068790288" duration="5554000" />
       <workItem from="1529128449345" duration="10654000" />
       <workItem from="1529203449337" duration="15832000" />
-      <workItem from="1529302745403" duration="6946000" />
+      <workItem from="1529302745403" duration="6907000" />
     </task>
     <task id="LOCAL-00001" summary="完成红黑树插入删除操作">
       <created>1529316375472</created>
@@ -289,18 +289,11 @@
       <option name="project" value="LOCAL" />
       <updated>1529322955481</updated>
     </task>
-    <task id="LOCAL-00003" summary="完成红黑树插入删除操作">
-      <created>1529322974888</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1529322974888</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155034000" />
+    <option name="totallyTimeSpent" value="154995000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -747,8 +740,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tree/btree.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="876" column="38" lean-forward="true" selection-start-line="876" selection-start-column="38" selection-end-line="876" selection-end-column="38" />
+        <state relative-caret-position="-15281">
+          <caret line="252" column="32" lean-forward="true" selection-start-line="252" selection-start-column="32" selection-end-line="252" selection-end-column="32" />
           <folding>
             <element signature="e#48#68#0" expanded="true" />
           </folding>
