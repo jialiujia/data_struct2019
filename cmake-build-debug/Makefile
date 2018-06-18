@@ -123,6 +123,33 @@ data_struct2019/fast:
 	$(MAKE) -f CMakeFiles/data_struct2019.dir/build.make CMakeFiles/data_struct2019.dir/build
 .PHONY : data_struct2019/fast
 
+heap/heap.o: heap/heap.cpp.o
+
+.PHONY : heap/heap.o
+
+# target to build an object file
+heap/heap.cpp.o:
+	$(MAKE) -f CMakeFiles/data_struct2019.dir/build.make CMakeFiles/data_struct2019.dir/heap/heap.cpp.o
+.PHONY : heap/heap.cpp.o
+
+heap/heap.i: heap/heap.cpp.i
+
+.PHONY : heap/heap.i
+
+# target to preprocess a source file
+heap/heap.cpp.i:
+	$(MAKE) -f CMakeFiles/data_struct2019.dir/build.make CMakeFiles/data_struct2019.dir/heap/heap.cpp.i
+.PHONY : heap/heap.cpp.i
+
+heap/heap.s: heap/heap.cpp.s
+
+.PHONY : heap/heap.s
+
+# target to generate assembly for a file
+heap/heap.cpp.s:
+	$(MAKE) -f CMakeFiles/data_struct2019.dir/build.make CMakeFiles/data_struct2019.dir/heap/heap.cpp.s
+.PHONY : heap/heap.cpp.s
+
 linear/linear_list.o: linear/linear_list.cpp.o
 
 .PHONY : linear/linear_list.o
@@ -321,6 +348,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... data_struct2019"
+	@echo "... heap/heap.o"
+	@echo "... heap/heap.i"
+	@echo "... heap/heap.s"
 	@echo "... linear/linear_list.o"
 	@echo "... linear/linear_list.i"
 	@echo "... linear/linear_list.s"

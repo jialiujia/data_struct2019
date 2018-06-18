@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/project/data_struct2019/heap/heap.cpp
+heap.hpp
+/project/data_struct2019/heap/heap.hpp
+
+/project/data_struct2019/heap/heap.hpp
+
 /project/data_struct2019/linear/linear_list.cpp
 linear_list.hpp
 /project/data_struct2019/linear/linear_list.hpp
@@ -39,6 +45,8 @@ stdlib.h
 /project/data_struct2019/queue/queue.cpp
 queue.hpp
 /project/data_struct2019/queue/queue.hpp
+mm_malloc.h
+/project/data_struct2019/queue/mm_malloc.h
 malloc.h
 /project/data_struct2019/queue/malloc.h
 
@@ -51,6 +59,8 @@ stdio.h
 /project/data_struct2019/stack/stdio.h
 stdlib.h
 /project/data_struct2019/stack/stdlib.h
+mm_malloc.h
+/project/data_struct2019/stack/mm_malloc.h
 malloc.h
 /project/data_struct2019/stack/malloc.h
 
@@ -59,8 +69,24 @@ malloc.h
 /project/data_struct2019/string/string.cpp
 string.hpp
 /project/data_struct2019/string/string.hpp
+mm_malloc.h
+/project/data_struct2019/string/mm_malloc.h
 malloc.h
 /project/data_struct2019/string/malloc.h
 
 /project/data_struct2019/string/string.hpp
+
+/project/data_struct2019/tree/btree.cpp
+btree.hpp
+/project/data_struct2019/tree/btree.hpp
+stdio.h
+/project/data_struct2019/tree/stdio.h
+../heap/heap.hpp
+/project/data_struct2019/heap/heap.hpp
+mm_malloc.h
+/project/data_struct2019/tree/mm_malloc.h
+malloc.h
+/project/data_struct2019/tree/malloc.h
+
+/project/data_struct2019/tree/btree.hpp
 

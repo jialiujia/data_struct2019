@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/project/data_struct2019/heap/heap.cpp">
+			<Option target="data_struct2019"/>
+		</Unit>
+		<Unit filename="/project/data_struct2019/heap/heap.hpp">
+			<Option target="data_struct2019"/>
+		</Unit>
 		<Unit filename="/project/data_struct2019/linear/linear_list.cpp">
 			<Option target="data_struct2019"/>
 		</Unit>
