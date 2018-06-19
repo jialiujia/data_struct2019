@@ -39,5 +39,11 @@ typedef struct {
     int n, e; //顶点数和边数
 } AGraph;
 
+///深度优先搜索遍历
+void DFS(AGraph *G, int v, int visit[MAXSIZE]); //v为开始结点
+
+///广度优先遍历
+void BFS(AGraph *G, int v, int visit[MAXSIZE]);
+
 
 #endif //DATA_STRUCT2019_PICTURE_HPP
