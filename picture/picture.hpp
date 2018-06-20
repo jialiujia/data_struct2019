@@ -45,5 +45,14 @@ void DFS(AGraph *G, int v, int visit[MAXSIZE]); //v为开始结点
 ///广度优先遍历
 void BFS(AGraph *G, int v, int visit[MAXSIZE]);
 
+///广度优先遍历获取离初始结点最远的结点
+void getFurthestNode(AGraph *G, int v, int visit[MAXSIZE], int &furthest);
+
+///判断无向图是否是一棵树
+int verifyIsTree(AGraph *G);
+
+///两顶点间是否有路径
+int DFSTrave(AGraph *G, int i, int j);
+
 
 #endif //DATA_STRUCT2019_PICTURE_HPP
