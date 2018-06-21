@@ -6,6 +6,7 @@
 #define DATA_STRUCT2019_PICTURE_HPP
 
 #define MAXSIZE 100
+#define INF 999
 
 ///领接矩阵
 typedef struct {
@@ -39,6 +40,12 @@ typedef struct {
     int n, e; //顶点数和边数
 } AGraph;
 
+///邻接边
+typedef struct {
+    int a, b; //边的两顶点
+    float w;
+} Road;
+
 ///深度优先搜索遍历
 void DFS(AGraph *G, int v, int visit[MAXSIZE]); //v为开始结点
 
@@ -54,5 +61,10 @@ int verifyIsTree(AGraph *G);
 ///两顶点间是否有路径
 int DFSTrave(AGraph *G, int i, int j);
 
+///普里姆最小生成树算法
+void Prim(MGraph g, int v0, float &sum);
+
+///克鲁斯卡尔最小生成树算法
+void Kruskal(MGraph g, float &sum, Road road[]);
 
 #endif //DATA_STRUCT2019_PICTURE_HPP
