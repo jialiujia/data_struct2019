@@ -61,10 +61,16 @@ int verifyIsTree(AGraph *G);
 ///两顶点间是否有路径
 int DFSTrave(AGraph *G, int i, int j);
 
-///普里姆最小生成树算法
+///Prim最小生成树算法
 void Prim(MGraph g, int v0, float &sum);
 
-///克鲁斯卡尔最小生成树算法
+///Kruskal最小生成树算法
 void Kruskal(MGraph g, float &sum, Road road[]);
+
+///Dijkstra最短短路径算法
+void Dijkstra(MGraph g, int v, float dist[], float path[]);
+
+///Floyd最短短路径算法
+void Floyd(MGraph g, int path[][MAXSIZE]);
 
 #endif //DATA_STRUCT2019_PICTURE_HPP

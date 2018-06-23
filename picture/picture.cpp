@@ -184,3 +184,86 @@ void Kruskal(MGraph g, float &sum, Road road[]) {
         }
     }
 }
+
+///打印 Dijkstra 访问路径
+void printDijkstraPath(int path[], int a) {
+    int stack[MAXSIZE], top = -1;
+    while (path[a] != -1) {
+        stack[++ top] = a;
+        a = path[a];
+    }
+    stack[++ top] = a;
+    while (top != -1) {
+        printf("%d", path[top --]);
+    }
+}
+
+void Dijkstra(MGraph g, int v, float dist[], float path[]) {
+    /*初始化*/
+    int set[MAXSIZE];
+    for (int i = 0; i < g.n; ++ i) {
+        set[i] = 0;
+        dist[i] = g.edges[v][i];
+        if (g.edges[v][i] < INF) {
+            path[i] = v;
+        } else {
+            path[i] = -1;
+        }
+    }
+    path[v] = -1;set[v] = 1;
+    /*初始化结束*/
+
+    for (int i = 0; i < g.n - 1; ++ i) {
+        float min = INF;
+        int u = 0;
+        for (int j = 0; j < g.n; ++ j) {
+            if (set[j] != 1 && dist[j] < min) {
+                u = j;
+                min = dist[j];
+            }
+        }
+
+        set[u] = 1;
+        /*已新并入的顶点为中间点，对通往剩余顶点路径进行检测*/
+        for (int k = 0; k < g.n; ++ k) {
+            if (set[k] != 1 && g.edges[u][k] + dist[u] < dist[k])  {
+                dist[k] = g.edges[u][k] + dist[u];
+                path[k] = u;
+            }
+        }
+    }
+}
+
+///打印 Floyd 访问路径
+void printFloydPath(int u, int v, int path[][MAXSIZE]) {
+    if (path[u][v] == -1) {
+        printf("%d", v);
+    } else {
+        printFloydPath(u, path[u][v], path); //处理前半段路径
+        printFloydPath(path[u][v], v, path); //处理后半段路径
+    }
+}
+
+void Floyd(MGraph g, int path[][MAXSIZE]) {
+    /*初始化*/
+    float A[MAXSIZE][MAXSIZE];
+    for (int i = 0; i < g.n; ++ i) {
+        for (int j = 0; j < g.n; ++ i) {
+            A[i][j] = g.edges[i][j];
+            path[i][j] = -1;
+        }
+    }
+    /*初始化结束*/
+
+    /*已新并入的顶点为中间点，对通往剩余顶点路径进行检测*/
+    for (int i = 0; i < g.n; ++ i) {
+        for (int j = 0; j < g.n; ++ j) {
+            for (int k = 0; k < g.n; ++ k) {
+                if (A[i][j] > A[i][k] + A[k][j]) {
+                    A[i][j] = A[i][k] + A[k][j];
+                    path[i][j] = k;
+                }
+            }
+        }
+    }
+}
