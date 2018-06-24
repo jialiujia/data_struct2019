@@ -6,7 +6,7 @@
 #define DATA_STRUCT2019_PICTURE_HPP
 
 #define MAXSIZE 100
-#define INF 999
+#define INF 65535
 
 ///领接矩阵
 typedef struct {
@@ -32,6 +32,7 @@ typedef struct arc_node {
 typedef struct {
     char data;
     arc_node *firstArc; //指向第一条边
+    int iCount; //统计顶点的当前入度
 }VNode;
 
 ///邻接表图
@@ -72,5 +73,11 @@ void Dijkstra(MGraph g, int v, float dist[], float path[]);
 
 ///Floyd最短短路径算法
 void Floyd(MGraph g, int path[][MAXSIZE]);
+
+///AOV网拓扑排序
+int TopSort(AGraph *G, int &path[]);
+
+///AOE网关键路径
+int CriticalPath(AGraph *G, int &path[], int &sum);
 
 #endif //DATA_STRUCT2019_PICTURE_HPP
