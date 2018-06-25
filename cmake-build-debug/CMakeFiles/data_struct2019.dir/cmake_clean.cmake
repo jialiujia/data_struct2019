@@ -7,9 +7,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/data_struct2019.dir/matrix/matrix.cpp.o"
   "CMakeFiles/data_struct2019.dir/tree/btree.cpp.o"
   "CMakeFiles/data_struct2019.dir/heap/heap.cpp.o"
+  "CMakeFiles/data_struct2019.dir/picture/picture.cpp.o"
+  "CMakeFiles/data_struct2019.dir/sort/sort.cpp.o"
   "data_struct2019.pdb"
-  "data_struct2019.exe"
-  "libdata_struct2019.dll.a"
+  "data_struct2019"
 )
 
 # Per-language clean rules from dependency scanning.
