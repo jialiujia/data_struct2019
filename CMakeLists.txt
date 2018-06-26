@@ -10,5 +10,5 @@ set(SOURCE_FILES main.cpp
         string/string.cpp string/string.hpp
         matrix/matrix.cpp matrix/matrix.hpp
         tree/btree.cpp tree/btree.hpp
-        heap/heap.cpp heap/heap.hpp picture/picture.cpp picture/picture.hpp sort/sort.cpp sort/sort.hpp)
+        heap/heap.cpp heap/heap.hpp picture/picture.cpp picture/picture.hpp sort/sort.cpp sort/sort.hpp tree/mfset.cpp tree/mfset.hpp tree/ptree.cpp tree/ptree.hpp)
 add_executable(data_struct2019 ${SOURCE_FILES})
