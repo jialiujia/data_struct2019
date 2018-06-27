@@ -46,11 +46,11 @@ int getPTreePosition(PTree tree, char node);
 /* 替换node结点的值 */
 void replacePTreeData(PTree &tree, char node, char newValue);
 
-/* 返回node结点的第i个孩子的值 */
+/* 返回node结点的第i个孩子的值, i = 0定义为最后一个孩子 */
 void getChildValue(PTree tree, char node, int i, char &value);
 
 /* 返回node结点的左右兄弟值 0——左兄弟，1——右兄弟 */
-void getChildBrotherValue(PTree, char node, int brother, char &value);
+void getChildBrotherValue(PTree tree, char node, int brother, char &value);
 
 /* 返回node结点的孩子数量 */
 int getChildCount(PTree tree, char node);
@@ -58,10 +58,10 @@ int getChildCount(PTree tree, char node);
 /* 返回node结点第i个孩子在树中的位置, i = 0定义为最后一个孩子 */
 int getChildPosition(PTree tree, char node, int i);
 
-/* 将结点value插入为结点node的第i个孩子 */
+/* 将结点value插入为结点node的第i个孩子, i = 0定义为最后一个孩子 */
 int insertNode(PTree &tree, char node, int i, char value);
 
-/* 将树p插入为node结点的第i颗子树 */
+/* 将树p插入为node结点的第i颗子树, i = 0定义为最后一个孩子 */
 int insertPTree(PTree &tree, char node, int i, PTree p);
 
 /* 删除树中node结点的第i颗子树 */
