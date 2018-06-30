@@ -17,6 +17,7 @@ typedef struct pt_node {
 typedef struct {
     PTNode nodes[MAXSIZE]; //根结点默认0
     int n; //结点树
+    int rank[MAXSIZE]; //秩
 } PTree;
 
 /* 初始化双亲树 */

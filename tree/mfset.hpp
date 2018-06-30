@@ -22,16 +22,19 @@ typedef struct {
     int n;
 } Relation;
 
+/* 初始化集合 */
+void initMFSet(MFSet &mfSet, int n);
+
 /* 查找集合中i所在子集的根 */
 int findMFSet(MFSet mfSet, int i);
 
 /* 求i和j的并集，i和j无交集 */
 int mergeMFSet(MFSet &mfSet, int i, int j);
 
-/* 集合归并 */
+/* 集合按秩归并 */
 int mixMFSet(MFSet &mfSet, int i, int j);
 
-/* 查找集合中i所在子集的根 */
+/* 查找集合中i所在子集的根，路径压缩 */
 int fixMFSet(MFSet &mfSet, int i);
 
 /* 求在等价关系下R集合的等价类 */
