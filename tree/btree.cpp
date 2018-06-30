@@ -11,15 +11,15 @@
 #include "malloc.h"
 #endif
 
-void visit(char c) {
+__inline void visit(char c) {
     printf("%c ", c);
 }
 
-void visit(int d) {
+__inline void visit(int d) {
     printf("%d", d);
 }
 
-int op(int a, int b, char Op) {
+__inline int op(int a, int b, char Op) {
     switch (Op) {
         case '+':
             return a + b;
@@ -110,6 +110,7 @@ int trave(BTNode *p, int k, int n) {
         trave(p ->lchild, k, n);
         trave(p ->rchild, k, n);
     }
+    return 1;
 }
 
 void level(BTNode *p) {
@@ -1006,6 +1007,7 @@ int removeRBTreeNode(RBTreeNode* &root, int key) {
     if (color == BLACK)
         fixUpRemoveRBTree(root, child, parent);
     destroyRBtreeNode(node);
+    return 1;
 }
 
 void destroyRBtreeNode(RBTreeNode* &node) {

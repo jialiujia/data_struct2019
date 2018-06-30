@@ -13,7 +13,7 @@
 #include "malloc.h"
 #endif
 
-void Visit(char data) {
+__inline void Visit(char data) {
     printf("%c", data);
 }
 
@@ -71,7 +71,7 @@ int getPTreeDepth(PTree tree) {
 
 void getPTreeRootData(PTree tree, char &value) {
     if (tree.n == 0) {
-        value = nullptr;
+        value = NULL;
     }
 
     value = tree.nodes[0].data;
@@ -79,7 +79,7 @@ void getPTreeRootData(PTree tree, char &value) {
 
 void getPTreeData(PTree tree, int i, char &value) {
     if (i < 0 || i >= tree.n || tree.n == 0) {
-        value = nullptr;
+        value = NULL;
     }
 
     value = tree.nodes[i - 1].data;
@@ -109,11 +109,11 @@ void replacePTreeData(PTree &tree, char node, char newValue) {
 void getChildValue(PTree tree, char node, int i, char &value) {
     int p = getPTreePosition(tree, node);
     int child = 0;
-    value = nullptr;
+    value = NULL;
     if (p == -1) {
-        value = nullptr;
+        value = NULL;
     } else if (i < 0) {
-        value = nullptr;
+        value = NULL;
     } else {
         for (int j = p + 1; j < tree.n; ++ j) {
             if (i != 0) {
@@ -135,17 +135,17 @@ void getChildValue(PTree tree, char node, int i, char &value) {
 void getChildBrotherValue(PTree tree, char node, int brother, char &value) {
     int p;
     if (tree.n == 0) {
-        value = nullptr;
+        value = NULL;
     } else if (brother != 0 && brother != 1) {
-        value = nullptr;
+        value = NULL;
     } else if ((p = getPTreePosition(tree, node)) == -1) {
-        value = nullptr;
+        value = NULL;
     } else if (p == 0) {
-        value = nullptr;
+        value = NULL;
     } else if (brother == 0 && tree.nodes[p - 1].parent != tree.nodes[p].parent) {
-        value = nullptr;
+        value = NULL;
     } else if (brother == 1 && tree.nodes[p + 1].parent != tree.nodes[p].parent) {
-        value = nullptr;
+        value = NULL;
     } else if (brother == 0) {
         value = tree.nodes[p - 1].data;
     } else {
@@ -171,7 +171,7 @@ int getChildCount(PTree tree, char node) {
 int getChildPosition(PTree tree, char node, int i) {
     char value;
     getChildValue(tree, node, i, value);
-    if (value == nullptr) {
+    if (value == NULL) {
         return -1;
     }
 

@@ -38,3 +38,40 @@ void InsertHalfSort(int R[], int n) {
         R[j + 1] = temp;
     }
 }
+
+void ShellSort(int R[], int n) {
+    int gap; //增量值
+
+    for (gap = n / 2; gap > 0; gap = gap / 2) {
+        for (int i = 0; i < gap; ++ i) {
+            int count = 0;
+            int tmp[MAXSIZE];
+            for (int j = i; j < n; j += gap) {
+                tmp[count] = R[j];
+                ++ count;
+            }
+            InsertSort(tmp, count);
+            for (int k = 0; k < count; ++ k) {
+                R[i + gap * k] = tmp[k];
+            }
+        }
+    }
+}
+
+void BubbleSort(int R[], int n) {
+    for (int i = n - 1; i > 0; -- i) {
+        int flag = 0;
+        for (int j = 0; j < i; ++ j) {
+            if (R[j] > R[j + 1]) {
+                int tmp = R[j];
+                R[j] = R[j + 1];
+                R[j + 1] = tmp;
+                flag = 1;
+            }
+        }
+
+        if (flag == 0) {
+            return;
+        }
+    }
+}

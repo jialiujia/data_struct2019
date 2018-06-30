@@ -62,6 +62,7 @@ int mixMFSet(MFSet &mfSet, int i, int j) {
             ++ mfSet.rank[p2];
         }
     }
+    return 1;
 }
 
 int fixMFSet(MFSet &mfSet, int i) {
@@ -89,6 +90,7 @@ int equivalenceMFSet1(MFSet &mfSet, Relation R) {
 
         mergeMFSet(mfSet, r1, r2); //合并子类
     }
+    return 1;
 }
 
 int equivalenceMFSet2(MFSet &mfSet, Relation R) {
@@ -102,6 +104,7 @@ int equivalenceMFSet2(MFSet &mfSet, Relation R) {
 
         mixMFSet(mfSet, r1, r2); //合并子类
     }
+    return 1;
 }
 
 int subsetCountMFSet(MFSet mfSet) {

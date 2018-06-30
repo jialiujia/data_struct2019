@@ -75,9 +75,9 @@ void Dijkstra(MGraph g, int v, float dist[], float path[]);
 void Floyd(MGraph g, int path[][MAXSIZE]);
 
 ///AOV网拓扑排序
-int TopSort(AGraph *G, int &path[]);
+int TopSort(AGraph *G, int path[]);
 
 ///AOE网关键路径
-int CriticalPath(AGraph *G, int &path[], int &sum);
+int CriticalPath(AGraph *G, int path[], int &sum);
 
 #endif //DATA_STRUCT2019_PICTURE_HPP

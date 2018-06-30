@@ -5,7 +5,7 @@
 #include "picture.hpp"
 #include "stdio.h"
 
-void Visit(char data) {
+__inline void Visit(char data) {
     printf("%c\n", data);
 }
 
@@ -17,7 +17,7 @@ void DFS(AGraph *G, int v, int visit[MAXSIZE]) {
     visit[v] = 1;
 
     ArcNode *node = G->adjlist[v].firstArc;
-    while (node != nullptr) {
+    while (node != NULL) {
         if (visit[node ->adjvex] != 1) {
             DFS(G, node ->adjvex, visit);
         }
@@ -39,7 +39,7 @@ void BFS(AGraph *G, int v, int visit[MAXSIZE]) {
         front = (front + 1) % MAXSIZE;
         int pop = que[front];
         ArcNode *node = G ->adjlist[pop].firstArc;
-        while (node != nullptr) {
+        while (node != NULL) {
             if (visit[node ->adjvex] != 1) {
                 Visit(G ->adjlist[node ->adjvex].data);
                 visit[node ->adjvex] = 1;
@@ -67,7 +67,7 @@ void getFurthestNode(AGraph *G, int v, int visit[MAXSIZE], int &furthest) {
         front = (front + 1) % MAXSIZE;
         furthest = que[front];
         ArcNode *node = G ->adjlist[furthest].firstArc;
-        while (node != nullptr) {
+        while (node != NULL) {
             if (visit[node ->adjvex] != 1) {
                 Visit(G ->adjlist[node ->adjvex].data);
                 visit[node ->adjvex] = 1;
@@ -83,7 +83,7 @@ void DFS(AGraph *G, int v, int visit[MAXSIZE], int &vn, int &en) {
     visit[v] = 1;
     ++ vn;
     ArcNode *node = G ->adjlist[v].firstArc;
-    while (node != nullptr) {
+    while (node != NULL) {
         ++ en;
         if (visit[node ->adjvex] != 1) {
             DFS(G, node ->adjvex, visit, vn, en);
@@ -268,7 +268,7 @@ void Floyd(MGraph g, int path[][MAXSIZE]) {
     }
 }
 
-int TopSort(AGraph *G, int &path[]) {
+int TopSort(AGraph *G, int path[]) {
     int stack[MAXSIZE], top = -1, n = 0;
     for (int i = 0; i < G->n; ++ i) {
         if (G ->adjlist[i].iCount == 0) {
@@ -280,7 +280,7 @@ int TopSort(AGraph *G, int &path[]) {
         int no = stack[top --];
         ++ n;
         ArcNode *node = G ->adjlist[no].firstArc;
-        while (node != nullptr) {
+        while (node != NULL) {
             -- (G ->adjlist[node ->adjvex].iCount); //子结点入度减一
             if (G ->adjlist[node ->adjvex].iCount == 0) {
                 stack[++ top] = node ->adjvex;
@@ -297,11 +297,11 @@ int TopSort(AGraph *G, int &path[]) {
 }
 
 ///获取当前结点所有入度结点
-int getInNode(AGraph *G, int node, int &parent[]) {
+int getInNode(AGraph *G, int node, int parent[]) {
     int result = 0;
     for (int i = 0; i < G->n; ++ i) {
         ArcNode *p = G ->adjlist[i].firstArc;
-        while (p != nullptr) {
+        while (p != NULL) {
             if (p ->adjvex == node) {
                 parent[++ result] = i;
             }
@@ -312,10 +312,10 @@ int getInNode(AGraph *G, int node, int &parent[]) {
 }
 
 ///获取当前结点的出度结点
-int getOutNode(AGraph *G, int node, int &child[]) {
+int getOutNode(AGraph *G, int node, int child[]) {
     int result = 0;
     ArcNode *p = G ->adjlist[node].firstArc;
-    while (p != nullptr) {
+    while (p != NULL) {
         child[++ result] = p ->adjvex;
         p = p ->nextArc;
     }
@@ -323,10 +323,10 @@ int getOutNode(AGraph *G, int node, int &child[]) {
 }
 
 ///根据拓扑有序序列求出各顶点所代表事件的最早发生时间
-int getVE(AGraph *G, int topSort[], float &ve[MAXSIZE]) {
+int getVE(AGraph *G, int topSort[], float ve[]) {
 
     for (int i = 0; i < G ->n; ++ i) {
-        int inNode[G ->n - 1];
+        int *inNode;
         int no = topSort[i];
         int num = getInNode(G, no, inNode);
         if (num == 0) {
@@ -335,7 +335,7 @@ int getVE(AGraph *G, int topSort[], float &ve[MAXSIZE]) {
             float max = 0;
             for (int j = 0; j < num; ++ j) {
                 ArcNode *p = G ->adjlist[inNode[j]].firstArc;
-                while (p ->adjvex != nullptr && p ->adjvex != no) {
+                while (p ->adjvex != no) {
                     p = p ->nextArc;
                 }
                 int k = 0;
@@ -358,9 +358,9 @@ int getVE(AGraph *G, int topSort[], float &ve[MAXSIZE]) {
 }
 
 ///根据拓扑有序序列求出各顶点所代表事件的最晚发生时间
-int getVl(AGraph *G, int topSort[], float ve[MAXSIZE], float &vl[MAXSIZE]) {
+int getVl(AGraph *G, int topSort[], float ve[MAXSIZE], float vl[]) {
     for (int i = G ->n - 1; i >= 0; -- i) {
-        int outNode[G ->n - 1];
+        int *outNode;
         int no = topSort[i];
         int num = getOutNode(G, no, outNode);
         if (num == 0) {
@@ -368,7 +368,7 @@ int getVl(AGraph *G, int topSort[], float ve[MAXSIZE], float &vl[MAXSIZE]) {
         } else {
             float min = INF;
             ArcNode *p = G ->adjlist[no].firstArc;
-            while (p != nullptr) {
+            while (p != NULL) {
                 int k = 0;
                 while (topSort[k] != p->adjvex && k < G->n) {
                     ++ k;
@@ -389,7 +389,7 @@ int getVl(AGraph *G, int topSort[], float ve[MAXSIZE], float &vl[MAXSIZE]) {
 }
 
 ///获取AOE中各事件最早发生时间
-int getEevent(AGraph *G, int topSort[], float ve[MAXSIZE], float &e[MAXSIZE]) {
+int getEevent(AGraph *G, int topSort[], float ve[MAXSIZE], float e[]) {
     int count = -1;
     for (int i = 0; i < G ->n; ++i) {
         ArcNode *node = G ->adjlist[i].firstArc;
@@ -397,7 +397,7 @@ int getEevent(AGraph *G, int topSort[], float ve[MAXSIZE], float &e[MAXSIZE]) {
         while (topSort[k] != i && k < G ->n) {
             ++ k;
         }
-        while (node != nullptr) {
+        while (node != NULL) {
             e[++ count] = ve[k];
             node = node ->nextArc;
         }
@@ -410,11 +410,11 @@ int getEevent(AGraph *G, int topSort[], float ve[MAXSIZE], float &e[MAXSIZE]) {
 }
 
 ///获取AOE中各事件最迟发生时间
-int getLevent(AGraph *G, int topSort[], float vl[MAXSIZE], float &l[MAXSIZE]) {
+int getLevent(AGraph *G, int topSort[], float vl[MAXSIZE], float l[]) {
     int count = -1;
     for (int i = 0; i < G ->n; ++ i) {
         ArcNode *node = G ->adjlist[i].firstArc;
-        while (node != nullptr) {
+        while (node != NULL) {
             int no = node ->adjvex;
             int k = 0;
             while (topSort[k] != no && k < G ->n) {
@@ -431,10 +431,10 @@ int getLevent(AGraph *G, int topSort[], float vl[MAXSIZE], float &l[MAXSIZE]) {
     return 0;
 }
 
-int CriticalPath(AGraph *G, int &path[MAXSIZE], int &sum) {
-    float ve[MAXSIZE], vl[MAXSIZE]; //最早发生时间和最迟发生时间数组
-    float e[MAXSIZE], l[MAXSIZE]; //事件最早发生时间和事件最迟发生时间
-    int arr[MAXSIZE];//拓扑排序数组
+int CriticalPath(AGraph *G, int path[], int &sum) {
+    float *ve, *vl; //最早发生时间和最迟发生时间数组
+    float* e, *l; //事件最早发生时间和事件最迟发生时间
+    int *arr;//拓扑排序数组
     sum = 0;
     int result = TopSort(G, arr); //拓扑排序
     if (result == 0) {
