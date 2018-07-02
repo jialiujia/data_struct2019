@@ -35,6 +35,14 @@ void HeapSort_Test() {
     }
 }
 
+void MergeSort_Test() {
+    int R[] = {10, 20, 15, 11, 30, 10};
+    MergeSort(R, 0, 5);
+    for (int i = 0; i < 6; ++ i) {
+        printf("%d\n", R[i]);
+    }
+}
+
 int main() {
-    HeapSort_Test();
+    MergeSort_Test();
 }

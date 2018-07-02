@@ -28,5 +28,8 @@ void SelectSort(int R[], int n);
 ///堆排序
 void HeapSort(int R[], int n);
 
+///归并排序
+void MergeSort(int R[], int low, int high);
+
 
 #endif //DATA_STRUCT2019_SORT_HPP

@@ -149,3 +149,56 @@ void HeapSort(int R[], int n) {
         Sift(R, 0, i - 1);
     }
 }
+
+///将两段有序序列合并成一段有序序列
+void Merge(int R[], int low, int mid, int high) {
+    int A[MAXSIZE];
+    int B[MAXSIZE];
+    int count1 = 0, count2 = 0;
+
+    for (int i = low; i <= mid; ++ i) {
+        A[count1] = R[i];
+        ++ count1;
+    }
+
+    for (int j = mid + 1; j <= high; ++ j) {
+        B[count2] = R[j];
+        ++ count2;
+    }
+
+    int i = 0, j = 0, count = low;
+    while (i < count1 && j < count2) {
+        if (A[i] > B[j]) {
+            R[count] = B[j];
+            ++ count;
+            ++ j;
+        } else {
+            R[count] = A[i];
+            ++ count;
+            ++ i;
+        }
+    }
+
+    if (i < count1) {
+        while (i < count1) {
+            R[count] = A[i];
+            ++ count;
+            ++ i;
+        }
+    } else {
+        while (j < count2) {
+            R[count] = B[j];
+            ++ count;
+            ++ j;
+        }
+    }
+}
+
+void MergeSort(int R[], int low, int high) {
+    if (low < high) {
+        int mid = (low + high) / 2;
+        MergeSort(R, low, mid);
+        MergeSort(R, mid + 1, high);
+        Merge(R, low, mid, high);
+    }
+}
