@@ -13,28 +13,37 @@ typedef struct heap {
     int size = 0; //实际容量
 } Heap;
 
-int createminHeap(Heap &heap, int data[], int size); //创建最小堆
+///创建最小堆
+int createminHeap(Heap &heap, int data[], int size);
 
-int getIndex(Heap heap, int data); //获取元素所在的索引
+///获取元素所在的索引
+int getIndex(Heap heap, int data);
 
+///最小堆的向下调整算法,
+///注：数组实现的堆中，第N个节点的左孩子的索引值是(2N+1)，右孩子的索引是(2N+2)。
+void minheapFilterdown(Heap &heap, int start, int end);
 
-void minheapFilterdown(Heap &heap, int start, int end); //最小堆的向下调整算法,
-                                                       //注：数组实现的堆中，第N个节点的左孩子的索引值是(2N+1)，右孩子的索引是(2N+2)。
+///删除最小堆中的data
+int minheapRremove(Heap &heap, int data);
 
-int minheapRremove(Heap &heap, int data); //删除最小堆中的data
+///最小堆的向上调整算法(从end开始向上直到0，调整堆)
+void minheapFilter_up(Heap &heap, int end);
 
-void minheapFilter_up(Heap &heap, int end); //最小堆的向上调整算法(从end开始向上直到0，调整堆)
+///将data插入到最小二叉堆中
+int minheapInsert(Heap &heap, int data);
 
-int minheapInsert(Heap &heap, int data); //将data插入到最小二叉堆中
+///最大堆的向下调整算法,
+///注：数组实现的堆中，第N个节点的左孩子的索引值是(2N+1)，右孩子的索引是(2N+2)。
+void maxheapFilterdown(Heap &heap, int start, int end);
 
-void maxheapFilterdown(Heap &heap, int start, int end); //最大堆的向下调整算法,
-                                                       //注：数组实现的堆中，第N个节点的左孩子的索引值是(2N+1)，右孩子的索引是(2N+2)。
+///删除最大堆中的data
+int maxheapRremove(Heap &heap, int data);
 
-int maxheapRremove(Heap &heap, int data); //删除最大堆中的data
+///最大堆的向上调整算法(从end开始向上直到0，调整堆)
+void maxheapFilter_up(Heap &heap, int end);
 
-void maxheapFilter_up(Heap &heap, int end); //最大堆的向上调整算法(从end开始向上直到0，调整堆)
-
-int maxheapInsert(Heap &heap, int data); //将data插入到最大二叉堆中
+///将data插入到最大二叉堆中
+int maxheapInsert(Heap &heap, int data);
 
 
 #endif //DATA_STRUCT2019_HEAP_HPP

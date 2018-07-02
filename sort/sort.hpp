@@ -19,4 +19,14 @@ void ShellSort(int R[], int n);
 ///冒泡排序
 void BubbleSort(int R[], int n);
 
+///快速排序
+void QuickSort(int R[], int low, int high);
+
+///简单选择排序
+void SelectSort(int R[], int n);
+
+///堆排序
+void HeapSort(int R[], int n);
+
+
 #endif //DATA_STRUCT2019_SORT_HPP

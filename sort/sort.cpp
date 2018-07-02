@@ -75,3 +75,77 @@ void BubbleSort(int R[], int n) {
         }
     }
 }
+
+void QuickSort(int R[], int low, int high) {
+    if (low >= high) {
+        return;
+    }
+
+    int i = low, j = high;
+    int tmp = R[low];
+    while (i < j) {
+        while (i < j && R[j] >= tmp) { -- j; }
+        if (i < j) {
+            R[i] = R[j];
+            ++ i;
+        }
+
+        while (i < j && R[i] < tmp) { ++ i; }
+        if (i < j) {
+            R[j] = R[i];
+            -- j;
+        }
+    }
+    R[i] = tmp;
+    QuickSort(R, low, i - 1); //temp左边关键字排序
+    QuickSort(R, i + 1, high); //temp右边关键字排序
+}
+
+void SelectSort(int R[], int n) {
+    for (int i = 0; i < n; ++ i) {
+        int k = i;
+        /* 找出最小元素 */
+        for (int j = i + 1; j < n; ++ j) {
+            if (R[k] > R[j]) {
+                k = j;
+            }
+        }
+
+        int tmp = R[i];
+        R[i] = R[k];
+        R[k] = tmp;
+    }
+}
+
+///最大堆的向下调整
+void Sift(int R[], int low, int high) {
+    int c = low;
+
+    for (int i = (c * 2) + 1; i <= high; c = i, i = (2 * i) + 1) {
+        if (i < high && R[i] < R[i + 1]) { // i为左孩子，比较左右孩子大小
+            ++ i;
+        }
+
+        if (R[c] < R[i]) {
+            int tmp = R[c];
+            R[c] = R[i];
+            R[i] = tmp;
+        } else {
+            break;
+        }
+    }
+}
+
+void HeapSort(int R[], int n) {
+    /* 初始化最大堆 */
+    for (int i = (n / 2 + n % 2); i >= 0; -- i) {
+        Sift(R, i, n - 1);
+    }
+
+    for (int i = n - 1; i > 0; -- i) {
+        int tmp = R[i];
+        R[i] = R[0];
+        R[0] = tmp;
+        Sift(R, 0, i - 1);
+    }
+}
