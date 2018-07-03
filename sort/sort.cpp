@@ -202,3 +202,77 @@ void MergeSort(int R[], int low, int high) {
         Merge(R, low, mid, high);
     }
 }
+
+///获取最大值
+int getMax(int R[], int n) {
+    int max = -1;
+    for (int i = 0; i < n; ++ i) {
+        if (max < R[i]) {
+            max = R[i];
+        }
+    }
+    return max;
+}
+
+void BucketSort(int R[], int n) {
+    int max = getMax(R, n);
+    if (max == -1) {
+        return;
+    }
+
+    int bucket[MAXSIZE];
+
+    for (int i = 0; i <= max; ++ i) {
+        bucket[i] = 0;
+    }
+
+    for (int i = 0; i < n; ++ i) {
+        ++ bucket[R[i]];
+    }
+
+    int count = 0;
+    for (int i = 0; i <= max; ++ i) {
+        while (bucket[i] > 0) {
+            R[count] = i;
+            ++ count;
+            -- bucket[i];
+        }
+    }
+}
+
+///指数排序
+void countSort(int R[], int n, int radix) {
+    int bucket[10];
+    for (int &i : bucket) {
+        i = 0;
+    }
+
+    for (int i = 0; i < n; ++ i) {
+
+        ++ bucket[(R[i] / radix) % 10];
+    }
+
+    int count = 0;
+    int output[n];
+    for (int i = 0; i <= 9; ++ i) {
+        for (int j = 0; j < n, bucket[i] > 0; ++ j) {
+            if (R[j] / radix % 10 == i) {
+                output[count] = R[j];
+                ++ count;
+                -- bucket[i];
+            }
+        }
+    }
+
+    for (int i = 0; i < n; ++ i) {
+        R[i] = output[i];
+    }
+}
+
+void RadixSort(int R[], int n) {
+    int max = getMax(R, n);
+    if (max == -1) { return; }
+    for (int i = 1; max / i > 0; i *= 10) {
+        countSort(R, n, i);
+    }
+}

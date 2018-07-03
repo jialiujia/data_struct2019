@@ -31,5 +31,11 @@ void HeapSort(int R[], int n);
 ///归并排序
 void MergeSort(int R[], int low, int high);
 
+///桶排序
+void BucketSort(int R[], int n);
+
+///基数排序
+void RadixSort(int R[], int n);
+
 
 #endif //DATA_STRUCT2019_SORT_HPP

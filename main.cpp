@@ -43,6 +43,22 @@ void MergeSort_Test() {
     }
 }
 
+void BucketSort_Test() {
+    int R[] = {10, 20, 15, 11, 30, 10};
+    BubbleSort(R, 6);
+    for (int i = 0; i < 6; ++ i) {
+        printf("%d\n", R[i]);
+    }
+}
+
+void RadixSort_Test() {
+    int R[] = {50, 3, 542, 745, 2014, 154, 63, 616};
+    RadixSort(R, 8);
+    for (int i = 0; i < 8; ++ i) {
+        printf("%d\n", R[i]);
+    }
+}
+
 int main() {
-    MergeSort_Test();
+    RadixSort_Test();
 }
