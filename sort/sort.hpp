@@ -37,5 +37,12 @@ void BucketSort(int R[], int n);
 ///基数排序
 void RadixSort(int R[], int n);
 
+///计数排序
+void CountSort(int A[], int B[], int n);
+
+///双向冒泡排序
+void DoubleBubbleSort(int R[], int n);
+
+
 
 #endif //DATA_STRUCT2019_SORT_HPP

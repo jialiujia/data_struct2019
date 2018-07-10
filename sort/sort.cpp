@@ -276,3 +276,44 @@ void RadixSort(int R[], int n) {
         countSort(R, n, i);
     }
 }
+
+void CountSort(int A[], int B[], int n) {
+    for (int i = 0; i < n; ++ i) {
+        int count = 0;
+        for (int j = 0; j < n; ++ j) {
+            if (A[j] < A[i]) {
+                ++ count;
+            }
+        }
+
+        B[count] = A[i];
+    }
+}
+
+void DoubleBubbleSort(int R[], int n) {
+    int low = 0;
+    int high = n - 1;
+    int flag = 1;
+    while (flag == 1) {
+        flag = 0;
+        for (int j = high; j > low; -- j) {
+            if (R[j - 1] > R[j]) {
+                int tmp = R[j];
+                R[j] = R[j - 1];
+                R[j - 1] = tmp;
+                flag = 1;
+            }
+        }
+        ++ low;
+
+        for (int i = low; i < high; ++ i) {
+            if (R[i] > R[i + 1]) {
+                int tmp = R[i];
+                R[i] = R[i + 1];
+                R[i + 1] = tmp;
+                flag = 1;
+            }
+        }
+        --high;
+    }
+}

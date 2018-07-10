@@ -11,6 +11,7 @@
 
 typedef struct bt_node { ////查找二叉树结点
     char data;
+    int key;
     bt_node *lchild, *rchild;
 } BTNode;
 
