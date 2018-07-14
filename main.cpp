@@ -1,5 +1,6 @@
 #include <iostream>
 #include "sort/sort.hpp"
+#include "search/hash.hpp"
 
 using namespace std;
 
@@ -59,6 +60,31 @@ void RadixSort_Test() {
     }
 }
 
+void Hash_test() {
+    HashTable *hashTable;
+    InitHashTable(hashTable);
+    if (hashTable == nullptr) {
+        printf("hashTable init error");
+        return;
+    }
+
+    PutHashKV(hashTable, "a", "a");
+    PutHashKV(hashTable, "b", "b");
+    PutHashKV(hashTable, "c", "d");
+    PutHashKV(hashTable, "ad", "aaa");
+    PutHashKV(hashTable, "a", "c");
+    PutHashKV(hashTable, "ass", "ass");
+    PutHashKV(hashTable, "ass", "add");
+    PutHashKV(hashTable, "ae", "ae");
+    PutHashKV(hashTable, "agg", "r");
+    printf("%d\n", hashTable ->size);
+
+    RemoveHashKV(hashTable, "ad");
+    printf("%d\n", hashTable ->size);
+    char *r = GetHashValue(hashTable, "ae");
+    printf(r);
+}
+
 int main() {
-    RadixSort_Test();
+    Hash_test();
 }

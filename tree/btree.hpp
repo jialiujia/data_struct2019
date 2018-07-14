@@ -5,7 +5,7 @@
 #ifndef DATA_STRUCT2019_BTREE_HPP
 #define DATA_STRUCT2019_BTREE_HPP
 
-#define MAXSIZE 100
+#define MAX_CAPACITY 100
 #define RED 0
 #define BLACK 1
 

@@ -19,11 +19,11 @@ int isQueueEmpty(SqQueue queue) {
 }
 
 int enQueue(SqQueue &queue, int x) {
-   if ((queue.rear + 1) % MAXSIZE == queue.front) {
+   if ((queue.rear + 1) % MAX_CAPACITY == queue.front) {
        return 0;
    }
 
-    queue.rear = (queue.rear + 1) % MAXSIZE;
+    queue.rear = (queue.rear + 1) % MAX_CAPACITY;
     queue.data[queue.rear] = x;
     return 1;
 }
@@ -33,7 +33,7 @@ int deQueue(SqQueue &queue, int &x) {
         return 0;
     }
 
-    queue.front = (queue.front + 1) % MAXSIZE;
+    queue.front = (queue.front + 1) % MAX_CAPACITY;
     x = queue.data[queue.front];
     return 1;
 }

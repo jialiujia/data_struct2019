@@ -5,7 +5,7 @@
 #ifndef DATA_STRUCT2019_STACK_HPP
 #define DATA_STRUCT2019_STACK_HPP
 
-#define MAXSIZE 100
+#define MAX_CAPACITY 100
 
 typedef struct sq_stack {
     int data[100];

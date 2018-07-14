@@ -6,7 +6,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-void trsmat(int A[][MAXSIZE], int B[][MAXSIZE], int m, int n) {
+void trsmat(int A[][MAX_CAPACITY], int B[][MAX_CAPACITY], int m, int n) {
     for (int i = 0; i < m; ++ i) {
         for (int j = 0; j < n; ++ j) {
             B[j][i] = A[i][j];
@@ -14,7 +14,7 @@ void trsmat(int A[][MAXSIZE], int B[][MAXSIZE], int m, int n) {
     }
 }
 
-void addmat(int C[][MAXSIZE], int A[][MAXSIZE], int B[][MAXSIZE], int m, int n) {
+void addmat(int C[][MAX_CAPACITY], int A[][MAX_CAPACITY], int B[][MAX_CAPACITY], int m, int n) {
     for (int i = 0; i < m; ++ i) {
         for (int j = 0; j < n; ++ j) {
             C[i][j] = A[i][j] + B[i][j];
@@ -22,7 +22,7 @@ void addmat(int C[][MAXSIZE], int A[][MAXSIZE], int B[][MAXSIZE], int m, int n) 
     }
 }
 
-void mutmat(int C[][MAXSIZE], int A[][MAXSIZE], int B[][MAXSIZE], int m, int n, int k) {
+void mutmat(int C[][MAX_CAPACITY], int A[][MAX_CAPACITY], int B[][MAX_CAPACITY], int m, int n, int k) {
     for (int i = 0; i < m; ++ i) {
         for (int j = 0; j < k; ++ k) {
             C[i][j] = 0;
@@ -33,7 +33,7 @@ void mutmat(int C[][MAXSIZE], int A[][MAXSIZE], int B[][MAXSIZE], int m, int n, 
     }
 }
 
-void createtrimat(float A[][MAXSIZE], int m, int n, float B[][3]) {
+void createtrimat(float A[][MAX_CAPACITY], int m, int n, float B[][3]) {
     int k = 1;
     for (int i = 0; i < m; ++ i) {
         for (int j = 0; j < n; ++ j) {
@@ -71,7 +71,7 @@ void printtrimat(float B[][3]) {
     }
 }
 
-int createcrosslistmat(float A[][MAXSIZE], int m, int n, int k, CrossList &list) {
+int createcrosslistmat(float A[][MAX_CAPACITY], int m, int n, int k, CrossList &list) {
     if (list.rhead) {
         free(list.rhead);
     }
@@ -103,7 +103,7 @@ int createcrosslistmat(float A[][MAXSIZE], int m, int n, int k, CrossList &list)
         list.rhead[j].down = nullptr;
     }
 
-    OLNode *column_head[MAXSIZE]; //缓存列指针
+    OLNode *column_head[MAX_CAPACITY]; //缓存列指针
     for (int j = 0; j < n; ++ j) {
         column_head[j] = &(list.chead[j]);
     }

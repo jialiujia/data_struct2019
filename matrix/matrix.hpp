@@ -7,7 +7,7 @@
 
 #define M 4
 #define N 5
-#define MAXSIZE 100
+#define MAX_CAPACITY 100
 
 typedef struct ol_node {
     int row, col; //行号列号
@@ -20,16 +20,16 @@ typedef struct cross_list {
     int m, n, k; //矩阵行数、列数、非零节点总数
 } CrossList;
 
-void trsmat(int A[][MAXSIZE], int B[][MAXSIZE], int m, int n); //矩阵置换
+void trsmat(int A[][MAX_CAPACITY], int B[][MAX_CAPACITY], int m, int n); //矩阵置换
 
-void addmat(int C[][MAXSIZE], int A[][MAXSIZE], int B[][MAXSIZE], int m, int n); //矩阵相加
+void addmat(int C[][MAX_CAPACITY], int A[][MAX_CAPACITY], int B[][MAX_CAPACITY], int m, int n); //矩阵相加
 
-void mutmat(int C[][MAXSIZE], int A[][MAXSIZE], int B[][MAXSIZE], int m, int n, int k); //矩阵相乘
+void mutmat(int C[][MAX_CAPACITY], int A[][MAX_CAPACITY], int B[][MAX_CAPACITY], int m, int n, int k); //矩阵相乘
 
-void createtrimat(float A[][MAXSIZE], int m, int n, float B[][3]); //建立三元组
+void createtrimat(float A[][MAX_CAPACITY], int m, int n, float B[][3]); //建立三元组
 
 void printtrimat(float B[][3]); //打印三元组
 
-int createcrosslistmat(float A[][MAXSIZE], int m, int n, int k, CrossList &list); //建立十字链表
+int createcrosslistmat(float A[][MAX_CAPACITY], int m, int n, int k, CrossList &list); //建立十字链表
 
 #endif //DATA_STRUCT2019_MATRIX_HPP

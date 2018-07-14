@@ -114,23 +114,23 @@ int trave(BTNode *p, int k, int n) {
 }
 
 void level(BTNode *p) {
-    BTNode *que[MAXSIZE];
+    BTNode *que[MAX_CAPACITY];
     int front, rear;
     front = rear = 0;
     if (p != nullptr) {
-        rear = (rear + 1) % MAXSIZE;
+        rear = (rear + 1) % MAX_CAPACITY;
         que[rear] = p;
         while (front != rear) {
-            front = (front + 1) % MAXSIZE;
+            front = (front + 1) % MAX_CAPACITY;
             BTNode *q = que[front];
             visit(q ->data);
             if (q ->lchild != nullptr) {
-                rear = (rear + 1) % MAXSIZE;
+                rear = (rear + 1) % MAX_CAPACITY;
                 que[rear] = q ->lchild;
             }
 
             if (q ->rchild != nullptr) {
-                rear = (rear + 1) % MAXSIZE;
+                rear = (rear + 1) % MAX_CAPACITY;
                 que[rear] = q ->rchild;
             }
         }
@@ -139,7 +139,7 @@ void level(BTNode *p) {
 
 int maxNode(BTNode *p) {
     int front, rear, Lno = 0;
-    St que[MAXSIZE];
+    St que[MAX_CAPACITY];
     front = rear = 0;
     if (p != nullptr) {
         ++ rear;
@@ -183,7 +183,7 @@ int maxNode(BTNode *p) {
 
 void preorderNonrecursion(BTNode *bt) {
     if (bt != nullptr) {
-        BTNode *stack[MAXSIZE];
+        BTNode *stack[MAX_CAPACITY];
         int top = -1;
         stack[++ top] = bt;
         while (top != -1) {
@@ -201,7 +201,7 @@ void preorderNonrecursion(BTNode *bt) {
 
 void inorderNonrecursion(BTNode *bt) {
     if (bt != nullptr) {
-        BTNode *stack[MAXSIZE];
+        BTNode *stack[MAX_CAPACITY];
         int top = -1;
         BTNode *node = bt;
         while (top != -1 || node != nullptr) {
@@ -221,8 +221,8 @@ void inorderNonrecursion(BTNode *bt) {
 
 void postorderNonrecursion(BTNode *bt) {
     if (bt != nullptr) {
-        BTNode *stack1[MAXSIZE];
-        BTNode *stack2[MAXSIZE]; //缓存出栈结点
+        BTNode *stack1[MAX_CAPACITY];
+        BTNode *stack2[MAX_CAPACITY]; //缓存出栈结点
         int top1 = -1;
         int top2 = -1;
         stack1[++ top1] = bt;
@@ -246,7 +246,7 @@ void postorderNonrecursion(BTNode *bt) {
 
 void postorderNonrecursion2(BTNode *bt) {
     if (bt != nullptr) {
-        BTNode *stack[MAXSIZE];
+        BTNode *stack[MAX_CAPACITY];
         int top = -1;
         BTNode *pre, *cur; //上次访问结点和当前访问结点
         cur = bt;

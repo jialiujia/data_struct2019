@@ -5,7 +5,7 @@
 #ifndef DATA_STRUCT2019_STRING_HPP
 #define DATA_STRUCT2019_STRING_HPP
 
-#define MAXSIZE 100
+#define MAX_CAPACITY 100
 
 typedef struct str {
     char *ch;

@@ -20,7 +20,7 @@ int isEmpty(SqStack stack) {
 }
 
 int push(SqStack &stack, int x) {
-    if (stack.top == MAXSIZE -1) {
+    if (stack.top == MAX_CAPACITY -1) {
         return 0;
     }
 
@@ -113,7 +113,7 @@ int op(int a, char Op, int b) {
 
 int com(char exp[]) {
     int top = -1;
-    int stack[MAXSIZE];
+    int stack[MAX_CAPACITY];
     int i = 0;
 
     while (exp[i] != '\0') {
